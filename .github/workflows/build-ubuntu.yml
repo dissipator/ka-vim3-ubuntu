@@ -59,16 +59,15 @@ jobs:
         sudo mkdir -p mkdir /home/runner/work/ka-vim3-ubuntu/ka-vim3-ubuntu/project/
         sudo chown $USER:$GROUPS /home/runner/work/ka-vim3-ubuntu/ka-vim3-ubuntu/project/
     - name: Clone source code
-      working-directory: $WORKERDIR
+      working-directory: /home/runner/work/ka-vim3-ubuntu/ka-vim3-ubuntu/project/
       run: |
         df -hT $PWD
+        PWD
         git clone --depth 1 $REPO_URL 
-        ln -sf /home/runner/work/ka-vim3-ubuntu/ka-vim3-ubuntu/project/fenix $GITHUB_WORKSPACE/fenix
+        #ln -sf /home/runner/work/ka-vim3-ubuntu/ka-vim3-ubuntu/project/fenix $GITHUB_WORKSPACE/fenix
     - name: Load custom source
       run: |
         cd $GITHUB_WORKSPACE/fenix
-        source env/setenv.sh
-        make
 
 
     - name: Load custom configuration
