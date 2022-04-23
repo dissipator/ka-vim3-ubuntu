@@ -89,7 +89,7 @@ jobs:
       id: organize
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
-        cd $GITHUB_WORKSPACE/fenix/build
+        cd $GITHUB_WORKSPACE/fenix/build/images
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "::set-output name=status::success"
         
