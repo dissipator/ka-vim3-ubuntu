@@ -65,7 +65,7 @@ jobs:
         df -hT $PWD
         pwd
         git clone $REPO_URL 
-        #ln -sf /home/runner/work/ka-vim3-ubuntu/ka-vim3-ubuntu/project/fenix $GITHUB_WORKSPACE/fenix
+        ln -sf /home/runner/work/ka-vim3-ubuntu/ka-vim3-ubuntu/project/fenix $GITHUB_WORKSPACE/fenix
     - name: Load custom source
       run: |
         cd $GITHUB_WORKSPACE/fenix
