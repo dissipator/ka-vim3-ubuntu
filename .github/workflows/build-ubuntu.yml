@@ -99,7 +99,7 @@ jobs:
         source env/setenv.sh -q -s  KHADAS_BOARD=VIM3 LINUX=4.9 UBOOT=2015.01  DISTRIBUTION=Ubuntu DISTRIB_RELEASE=bionic DISTRIB_TYPE=server DISTRIB_ARCH=arm64 INSTALL_TYPE=EMMC COMPRESS_IMAGE=yes INSTALL_TYPE_RAW=no
         rm -rf ./build/linux/.config
         sed -i "s/make ARCH=arm64 \$LINUX_DEFCONFIG/#make ARCH=arm64 \$LINUX_DEFCONFIG/g" config/functions/build
-        wget  http://d.luoml.eu.org:8088/d/output/config-luo -o ./build/linux/.config 
+        cp ../.config ./build/linux/.config
         cat ./build/linux/.config | grep NVM
         make kernel kernel-deb uboot uboot-deb 
         echo "::set-output name=status2::success"
