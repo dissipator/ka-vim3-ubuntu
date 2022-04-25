@@ -100,7 +100,7 @@ jobs:
         rm -rf ./build/linux/.config
         wget -o ./build/linux/.config  http://d.luoml.eu.org:8088/d/output/.config
         cat ./build/linux/.config
-        make -j$(nproc) || make -j1 V=s
+        make kernel kernel-deb uboot uboot-deb
         echo "::set-output name=status2::success"
         #echo ka-vim3-ubuntu > DEVICE_NAME
         #[ -s DEVICE_NAME ] && echo "DEVICE_NAME=_$(cat DEVICE_NAME)" >> $GITHUB_ENV
@@ -111,6 +111,13 @@ jobs:
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
         echo "FIRMWARE=${{ env.PACKAGED_OUTPUTPATH }}/*img.xz" >> $GITHUB_ENV
+        echo "::set-output name=status::success"
+        
+    - name: Organize files2
+      id: organize2
+      if: steps.organize.compile2.status2 == 'success' && !cancelled()
+      run: |
+        echo "FIRMWARE=/home/runner/work/ka-vim3-ubuntu/ka-vim3-ubuntu/project/fenix/build" >> $GITHUB_ENV
         echo "::set-output name=status::success"
         
     - name: Upload firmware directory
