@@ -104,7 +104,7 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE/fenix
         source env/setenv.sh -q -s  KHADAS_BOARD=VIM3 LINUX=4.9 UBOOT=2015.01  DISTRIBUTION=Ubuntu DISTRIB_RELEASE=bionic DISTRIB_TYPE=server DISTRIB_ARCH=arm64 INSTALL_TYPE=EMMC COMPRESS_IMAGE=yes INSTALL_TYPE_RAW=no
-        sed -i "s/make ARCH=arm64 \$LINUX_DEFCONFIG/#make ARCH=arm64 \$LINUX_DEFCONFIG/g" config/functions/build
+        sed -i "s/make ARCH=arm64 \$LINUX_DEFCONFIG/echo pass #make ARCH=arm64 \$LINUX_DEFCONFIG/g" config/functions/build
         cat ./build/linux/.config | grep NVM
         make -j$(nproc)  
         echo "::set-output name=status2::success"
